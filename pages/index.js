@@ -1,9 +1,9 @@
-'use client'
+
 
 import * as THREE from 'three'
 import Image from 'next/image'
 import Link from 'next/link'
-import Underlay from './world/Underley'
+import Underlay from '../components/world/Underley'
 import styles from '../styles/Home.module.css'
 import { useState, useRef, Suspense, useMemo,useEffect } from 'react'
 import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
@@ -11,7 +11,7 @@ import { Trail,Reflector, CameraShake, OrbitControls, useTexture,Preload ,Html, 
 import { KernelSize } from 'postprocessing'
 import { SSR,EffectComposer, Bloom } from '@react-three/postprocessing'
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader'
-import Hall from './world/Hall'
+import Hall from '../components/world/Hall.js'
 import { DoubleSide } from 'three'
 import { useRoute, useLocation } from 'wouter'
 import AnimatedR from './animatedR'
