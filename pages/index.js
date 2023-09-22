@@ -1,8 +1,9 @@
+'use client'
+
 import * as THREE from 'three'
 import Image from 'next/image'
 import Link from 'next/link'
 import Underlay from './world/Underley'
-import Web3 from './web3'
 import styles from '../styles/Home.module.css'
 import { useState, useRef, Suspense, useMemo,useEffect } from 'react'
 import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
@@ -10,8 +11,7 @@ import { Trail,Reflector, CameraShake, OrbitControls, useTexture,Preload ,Html, 
 import { KernelSize } from 'postprocessing'
 import { SSR,EffectComposer, Bloom } from '@react-three/postprocessing'
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader'
-import { Hall } from './world/Hall'
-import { Neon } from './world/Neon'
+import Hall from './world/Hall'
 import { DoubleSide } from 'three'
 import { useRoute, useLocation } from 'wouter'
 import AnimatedR from './animatedR'
@@ -22,23 +22,6 @@ function Loader() {
   const { progress } = useProgress()
   return <Html center>Transforming {progress} % Reality</Html>
 }
-
-
-
-function Nocap({ color, ...props }) {
-  const ref = useRef()
-  useFrame((_) => (ref.current.position.y = Math.sin(_.clock.elapsedTime) / 10))
-  const { paths: [path] } = useLoader(SVGLoader,'/nocapmeta.svg') 
-  const geom = useMemo(() => SVGLoader.pointsToStroke(path.currentPath.getPoints(), path.userData.style), [])
-  return (
-    <group scale={1} ref={ref}>
-      <mesh  geometry={geom} {...props}>
-        <meshBasicMaterial color={ color } toneMapped={false} side={DoubleSide} />
-      </mesh>
-    </group>
-  )
-}
-
 
 function Rig({ children }) {
   const ref = useRef()

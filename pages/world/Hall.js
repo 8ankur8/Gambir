@@ -8,7 +8,8 @@ title: Star Wars: The Clone Wars: Venator Prefab
 import { useRef, useMemo, useLayoutEffect } from 'react'
 import { useGLTF, Merged } from '@react-three/drei'
 
-export function Hall(props) {
+
+export default function Hall(props) {
   const { nodes } = useGLTF('/models/starwar.glb')
   const instances = useMemo(
     () => ({
