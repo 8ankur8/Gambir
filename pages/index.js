@@ -23,23 +23,7 @@ function Loader() {
   return <Html center>Transforming {progress} % Reality</Html>
 }
 
-function Electron({ radius = 1.5, speed = 6, ...props }) {
-  const ref = useRef()
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime() * speed
-    ref.current.position.set(Math.sin(t) * radius, (Math.cos(t) * radius * Math.atan(t)) / Math.PI / 1.25, 0)
-  })
-  return (
-    <group {...props}>
-    <Trail local width={0.1} length={0.5} color={new THREE.Color(2, 1, 10)} attenuation={(t) => t * t}>
-        <mesh ref={ref}>
-          <sphereGeometry args={[0.01]} />
-          <meshBasicMaterial color={[3, 1, 10]} toneMapped={false} />
-        </mesh>
-     </Trail>   
-    </group>
-  )
-}
+
 
 function Nocap({ color, ...props }) {
   const ref = useRef()
@@ -60,9 +44,8 @@ function Rig({ children }) {
   const ref = useRef()
   const vec = new THREE.Vector3()
   const { camera, mouse } = useThree()
-  //camera.position.set(1,0,10)
    useFrame((state, delta) => {
-    camera.position.lerp(vec.set(mouse.x*2, mouse.y * 0.5, 6), 0.04)
+    camera.position.lerp(vec.set(mouse.x*2, mouse.y * 0.5, 10), 0.03)
   //  // ref.current.position.lerp(vec.set(mouse.x * 1, mouse.y * 0.1, 0), 0.1)
   //   //ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, (-mouse.x * Math.PI) /1, 0.1)
    })
@@ -132,23 +115,16 @@ function Portals({ q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
 export default function Home() {
   return (
     <div className={styles.main} >
-      <Canvas className={styles.scene} camera={{ position: [0, 0, 25]}}>
+      <Canvas className={styles.scene} camera={{ position: [0, 0, 20]}}>
       <Suspense fallback={<Loader />}> 
       <color attach="background" args={['black']} />
       <ambientLight intensity={0.1} />
       {/* <OrbitControls /> */}
       {/* <Rig />  */}
       <Hall position={[0, 0.1, 0]} /> 
-      <Neon position={[-1, 1, -6]} rotation={[0, Math.PI*0.6, 0]} scale={0.15}/>   
-      {/* <pointLight position={[10, 10, 10]} /> */}
        <Portals /> 
-      {/* <Electron position={[-0.25, 0, 0.25]} speed={3} />
-      <Electron position={[0, 0, 0.25]} rotation={[0, 0, Math.PI / 3]} speed={4} /> */}
-      
       <Triangle url={"about"} color="orange" scale={0.005} rotation={[0, 0, 0]} position={[-3, 1.0, -3]}/>
       <Triangle url={"team"} color="orange" scale={0.005} rotation={[0, 0, 0]} position={[-0.25, 1.0, -3]}/>
-      <Nocap color="white" scale={0.04} rotation={[0, -0.3,0]} position={[0.5, -1, 6]} />
-      <Nocap color="white" scale={0.04} rotation={[0, Math.PI*1.3,0]} position={[-0.75, -1, 6]} />
       <EffectComposer multisampling={10}>
       <SSR 
       intensity={0.2} 
@@ -169,8 +145,8 @@ export default function Home() {
       <Preload all />
       </Suspense> 
       </Canvas>
+     
       <Underlay />
-    
     </div>
   )
 }

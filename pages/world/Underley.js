@@ -6,7 +6,7 @@ const TopLeft = styled.div`
   left: 6vw;
   font-family: 'Playfair Display', serif;
   font-weight: 400;
-  color: #999999;
+  color: #00ff00;
   font-size: min(5vw, 3em);
   line-height: 0.9em;
 `
@@ -14,7 +14,7 @@ const TopLeft = styled.div`
 const BottomLeft = styled.div`
   position: absolute;
   bottom: 6vw;
-  color: #999999;
+  color: #00ff00;
   left: 6vw;
   font-family: 'Playfair Display', serif;
   font-weight: 900;
@@ -37,7 +37,7 @@ const BottomRight = styled.div`
 const LeftMiddle = styled.div`
   position: absolute;
   bottom: 50%;
-  color: #999999;
+  color: #ff00ff;
   right: 6vw;
   font-family: 'Inter';
   font-weight: 400;
@@ -54,7 +54,7 @@ const Bar = styled.div`
   left: ${(props) => (props.vertical ? '50%' : '0px')};
   width: ${(props) => (props.vertical ? '2px' : '150px')};
   height: ${(props) => (props.vertical ? '150px' : '2px')};
-  background: #999999;
+  background: #00FF00;
 `
 
 const Hamburger = styled.div`
@@ -67,7 +67,7 @@ const Hamburger = styled.div`
     position: relative;
     width: 24px;
     height: 2px;
-    background: #999999;
+    background: #00ff00;
     margin-bottom: 6px;
   }
 `
@@ -76,9 +76,9 @@ export default function Underlay() {
   return (
     <div>
       <TopLeft>
-        NoCapMeta
+        Vaibhav
       </TopLeft>
-      <BottomLeft>M</BottomLeft>
+      <BottomLeft>G</BottomLeft>
       <LeftMiddle>A flight of Reality</LeftMiddle>
       <Hamburger>
         <div />
